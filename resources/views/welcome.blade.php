@@ -307,6 +307,7 @@
                       if($scope.token.email == ''){
                         $scope.isEmailShow = true;
                       }else{
+                        console.log('show1')
                         $scope.isEmailShow = false;
                       }
                       $http({
@@ -321,6 +322,7 @@
                    if($scope.token.email == ''){
                         $scope.isEmailShow = true;
                       }else{
+                        console.log('show2')
                         $scope.isEmailShow = false;
                       }
                    //getting data on run time
