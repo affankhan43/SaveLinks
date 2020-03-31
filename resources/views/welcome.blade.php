@@ -304,7 +304,7 @@
                    }).then(response => {
                       localStorage.setItem("token",JSON.stringify(response.data));
                       $scope.token = JSON.parse(localStorage.getItem("token"));
-                      if($scope.token.email == null){
+                      if($scope.token.email == ''){
                         $scope.isEmailShow = true;
                       }else{
                         $scope.isEmailShow = false;
