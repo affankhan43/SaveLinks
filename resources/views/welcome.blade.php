@@ -292,7 +292,7 @@
                let tokenEmail = "{{(isset($info) ? $info->email : '')}}";
                if(serverToken != ''){
                 token = {id:tokenId,token:serverToken,email:tokenEmail};        
-                localStorage.setItem("token",JSON.stringify(token));           
+                localStorage.setItem("token",JSON.stringify(token));         
                }
 
 
@@ -304,10 +304,9 @@
                    }).then(response => {
                       localStorage.setItem("token",JSON.stringify(response.data));
                       $scope.token = JSON.parse(localStorage.getItem("token"));
-                      if($scope.token.email == ''){
+                      if($scope.token.email == '' || $scope.token.email == null){
                         $scope.isEmailShow = true;
                       }else{
-                        console.log('show1')
                         $scope.isEmailShow = false;
                       }
                       $http({
@@ -318,13 +317,12 @@
                         });
                    }) 
                }else{
-                   $scope.token = JSON.parse(localStorage.getItem("token"));
-                   if($scope.token.email == ''){
+                    $scope.token = JSON.parse(localStorage.getItem("token"));
+                    if($scope.token.email == "" || $scope.token.email == null){
                         $scope.isEmailShow = true;
-                      }else{
-                        console.log('show2')
+                    }else{
                         $scope.isEmailShow = false;
-                      }
+                    }
                    //getting data on run time
                     $http({
                         url:"{{URL::to('/api/allCategories')}}/" + $scope.token.id,
