@@ -241,10 +241,10 @@
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script>
         let myModule = angular.module("myModule",[],function($interpolateProvider)
-  {
-      $interpolateProvider.startSymbol('<%');
-      $interpolateProvider.endSymbol('%>');
-  });
+        {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
 
         myModule.controller("myController",function($scope,$http){
 
@@ -286,68 +286,59 @@
 
 
             $scope.checkStorage = function(){
-               let token = localStorage.getItem("token");
-               let serverToken = "{{(isset($info) ? $info->token : '')}}";
-               let tokenId = "{{(isset($info) ? $info->id : '')}}";
-               let tokenEmail = "{{(isset($info) ? $info->email : '')}}";
-               if(serverToken != ''){
-                token = {id:tokenId,token:serverToken,email:tokenEmail};        
-                localStorage.setItem("token",JSON.stringify(token));           
-               }
+                let token = localStorage.getItem("token");
+                let serverToken = "{{(isset($info) ? $info->token : '')}}";
+                let tokenId = "{{(isset($info) ? $info->id : '')}}";
+                let tokenEmail = "{{(isset($info) ? $info->email : '')}}";
+                if(serverToken != ''){
+                    token = {id:tokenId,token:serverToken,email:tokenEmail};
+                    localStorage.setItem("token",JSON.stringify(token));
+                }
 
-
-
-               if(token == null){
-                   $http({
-                       url:"{{URL::to('api/getFreshToken')}}",
-                       method:"GET"
-                   }).then(response => {
-                      localStorage.setItem("token",JSON.stringify(response.data));
-                      $scope.token = JSON.parse(localStorage.getItem("token"));
-                      if($scope.token.email == null){
-                        $scope.isEmailShow = true;
-                      }else{
-                        $scope.isEmailShow = false;
-                      }
-                      $http({
-                        url:"{{URL::to('/api/allCategories')}}/" + $scope.token.id,
+                if(token == null){
+                    $http({
+                        url:"{{URL::to('api/getFreshToken')}}",
                         method:"GET"
+                    }).then(response => {
+                        localStorage.setItem("token",JSON.stringify(response.data));
+                        $scope.token = JSON.parse(localStorage.getItem("token"));
+                        if($scope.token.email == null){
+                            $scope.isEmailShow = true;
+                        }else{
+                            $scope.isEmailShow = false;
+                        }
+                        $http({
+                            url:"{{URL::to('/api/allCategories')}}/" + $scope.token.id,
+                            method:"GET"
                         }).then(response => {
-                        $scope.categories = response.data;
+                            $scope.categories = response.data;
                         });
-                   }) 
-               }else{
-                   $scope.token = JSON.parse(localStorage.getItem("token"));
-                   if($scope.token.email == null){
+                    })
+                }else{
+                    $scope.token = JSON.parse(localStorage.getItem("token"));
+                    if($scope.token.email == null){
                         $scope.isEmailShow = true;
-                      }else{
+                    }else{
                         $scope.isEmailShow = false;
-                      }
-                   //getting data on run time
+                    }
+                    //getting data on run time
                     $http({
                         url:"{{URL::to('/api/allCategories')}}/" + $scope.token.id,
                         method:"GET"
                     }).then(response => {
-                    $scope.categories = response.data;
+                        $scope.categories = response.data;
                     });
                     //getting old links
                     $http({
-                    url:"{{URL::to('api/fetcholdlinks')}}/"+$scope.token.id,
-                    method:"GET"
+                        url:"{{URL::to('api/fetcholdlinks')}}/"+$scope.token.id,
+                        method:"GET"
                     }).then(response => {
                         $scope.links = response.data;
                         console.log($scope.links);
                     });
-               }
-
-               console.log($scope.token);
-
+                }
+                console.log($scope.token);
             }
-
-            
-
-            
-
 
             $scope.cancelAdd = function(){
                 $scope.addLink = false;
@@ -373,14 +364,13 @@
             }
 
             $scope.updatedLink = function(link){
-               let linkToEdit = {...$scope.isEditLink,"tokenId":$scope.token.id};
-               
-               $scope.isEditLink = {};
-               $http({
-                   url:"{{URL::to('/api/updateLink')}}",
-                   method:"POST",
-                   data:linkToEdit
-               }).then(response => {
+                let linkToEdit = {...$scope.isEditLink,"tokenId":$scope.token.id};
+                $scope.isEditLink = {};
+                $http({
+                    url:"{{URL::to('/api/updateLink')}}",
+                    method:"POST",
+                    data:linkToEdit
+                }).then(response => {
                     if(response.data.response != "Error"){
                         for(i = 0;i<$scope.links.length;i++){
                             if($scope.links[i].id == linkToEdit.id){
@@ -388,7 +378,7 @@
                             }
                         }
                     }
-               });
+                });
             }
 
             $scope.saveCatChanges = function(){
@@ -400,16 +390,13 @@
                     data:categoryToEdit
                 }).then(response => {
                     if(response.data.response != 'Error'){
-                    
                         for(i = 0;i<$scope.categories.length;i++){
                             if($scope.categories[i].id == categoryToEdit.id){
                                 $scope.categories[i] = categoryToEdit;
                             }
                         }
-                       
                     }
                 })
-
             }
 
             $scope.removeCat = category => {
