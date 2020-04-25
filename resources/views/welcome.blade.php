@@ -37,7 +37,7 @@
         <section class="bg-new">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-sm navbar-light">
-                    <form ng-submit="verifyEmail()" ng-show="isEmailShow">
+                    <form ng-submit="verifyEmail()" ng-show="isEmailShow" class="ng-hide">
                         <div class=" navbar" id="navbarCollapse">
                             <div class="form-inline">
                                 <div class="form-group">
@@ -50,8 +50,8 @@
                                     <!-- <input class="btn btn-color" value="SAve" style="display:none"/> -->
                                 </div>
                             </div>
-                            <div class="spinner-border text-primary" ng-if="isLoaderShow"></div>
-                            <span><%message%></span>
+                            <div class="spinner-border text-primary" ng-if="isLoaderShow" ng-cloak></div>
+                            <span class="ng-cloak"><%message%></span>
                         </div>
                     </form>
                 </nav>
@@ -74,7 +74,7 @@
                     <div class="row mt-3 float-right">
                         <div class="col-3"  style="position: absolute;right: 200px">
                             <button class="btn btn-outline-dark roundedc" ng-show="!addCat" ng-click="showCat()">Add Column</button>
-                            <form  ng-submit="saveCategory()" ng-show="addCat">
+                            <form  ng-submit="saveCategory()" ng-show="addCat" ng-cloak>
                                 <div class="card" style="width:70%;float:right;margin-bottom:30px">
                                     <input type="text" ng-model="catName" class="form-control" style="display:inline-block" placeholder="Enter Category Name"/>
                                     <input type="submit" style="display:none" value="Save" class="btn btn-success" style="display:inline-block"/>
@@ -82,7 +82,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="row mt-6 back" style="width: 100%; flex-wrap: nowrap;margin: 0;">
+                    <div class="row mt-6 back" style="width: 100%; flex-wrap: nowrap;margin: 0;" ng-cloak>
                         
                         <div class="col-sm-4 box children" style="width:34rem" ng-repeat="category in categories">
                             <!-- Category Name -->
@@ -240,14 +240,14 @@
 
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script>
-
         let myModule = angular.module("myModule",[],function($interpolateProvider)
-        {
-            $interpolateProvider.startSymbol('<%');
-            $interpolateProvider.endSymbol('%>');
-        });
+  {
+      $interpolateProvider.startSymbol('<%');
+      $interpolateProvider.endSymbol('%>');
+  });
 
         myModule.controller("myController",function($scope,$http){
+
             $scope.addCat = false;
             $scope.addLink = false;
             $scope.availableToEdit = {};
@@ -292,7 +292,7 @@
                let tokenEmail = "{{(isset($info) ? $info->email : '')}}";
                if(serverToken != ''){
                 token = {id:tokenId,token:serverToken,email:tokenEmail};        
-                localStorage.setItem("token",JSON.stringify(token));         
+                localStorage.setItem("token",JSON.stringify(token));           
                }
 
 
@@ -304,7 +304,7 @@
                    }).then(response => {
                       localStorage.setItem("token",JSON.stringify(response.data));
                       $scope.token = JSON.parse(localStorage.getItem("token"));
-                      if($scope.token.email == '' || $scope.token.email == null){
+                      if($scope.token.email == null){
                         $scope.isEmailShow = true;
                       }else{
                         $scope.isEmailShow = false;
@@ -317,12 +317,12 @@
                         });
                    }) 
                }else{
-                    $scope.token = JSON.parse(localStorage.getItem("token"));
-                    if($scope.token.email == "" || $scope.token.email == null){
+                   $scope.token = JSON.parse(localStorage.getItem("token"));
+                   if($scope.token.email == null){
                         $scope.isEmailShow = true;
-                    }else{
+                      }else{
                         $scope.isEmailShow = false;
-                    }
+                      }
                    //getting data on run time
                     $http({
                         url:"{{URL::to('/api/allCategories')}}/" + $scope.token.id,
@@ -450,9 +450,6 @@
 
             $scope.saveLink = function(category){
                let catId = category.id;
-               if (!$scope.link.url.startsWith("http://") && !$scope.link.url.startsWith("https://")){
-                $scope.link.url = "http://"+$scope.link.url
-               }
                $http({
                    method:"POST",
                    url:"{{URL::to('/api/saveLink')}}",
@@ -499,5 +496,10 @@
         });
 
     </script>
+        <style>
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+        </style>
 </body>
 </html>
