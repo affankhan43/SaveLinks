@@ -418,7 +418,7 @@
             }
 
             $scope.executeUrl = function(url){
-               window.open(url);
+                window.open(url);
             }
 
             $scope.removeLink = function(link){
@@ -434,16 +434,14 @@
                 }
             }
 
-
             $scope.saveLink = function(category){
-               let catId = category.id;
-               $http({
-                   method:"POST",
-                   url:"{{URL::to('/api/saveLink')}}",
-                   data:{cat_id:catId,url:$scope.link.url,tags:$scope.link.tags,tokenId:$scope.token.id}
-               }).then(response => {
+                let catId = category.id;
+                $http({
+                    method:"POST",
+                    url:"{{URL::to('/api/saveLink')}}",
+                    data:{cat_id:catId,url:$scope.link.url,tags:$scope.link.tags,tokenId:$scope.token.id}
+                }).then(response => {
                     if(response.data.response != "Error"){
-
                         let insertId = response.data.response;
                         let link = {
                             id:insertId,
@@ -454,16 +452,13 @@
                         };
                         $scope.links.push(link);
                     }
-                   $scope.link = {};
-                   $scope.cancelAdd();
-               })
+                    $scope.link = {};
+                    $scope.cancelAdd();
+                })
             }
 
             $scope.saveCategory = function(){
-
                 if($scope.catName.length >= 3){
-
-
                     $scope.addCat = false;
                     $http({
                         url:"{{URL::to('/api/saveCategory')}}",
@@ -471,22 +466,19 @@
                         data:{"newName":$scope.catName,"tokenId":$scope.token.id}
                     }).then(response => {
                         $scope.categories.push({id:response.data.response,name:$scope.catName.slice(),created_at:"",upated_at:""});
-                         $scope.catName = "";
-
+                        $scope.catName = "";
                     });
-
                 }else{
                     alert("Please enter at least more then 3 charecters in category new name");
                 }
-
             }
         });
-
     </script>
-        <style>
-            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-        </style>
+
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </body>
 </html>
