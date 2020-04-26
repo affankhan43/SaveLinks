@@ -7692,3 +7692,12 @@ border: 0px;
 background: none;
 
 }
+
+.remove {
+  display: none;
+  font-size: 15px;
+  cursor:pointer;
+}
+.cats:hover .remove{
+  display: initial !important;
+}

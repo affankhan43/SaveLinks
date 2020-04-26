@@ -84,14 +84,17 @@
                     </div>
                     <div class="row mt-6 back" style="width: 100%; flex-wrap: nowrap;margin: 0;" ng-cloak>
                         
-                        <div class="col-sm-4 box children" style="width:34rem" ng-repeat="category in categories">
+                        <div class="col-sm-4 box children cats" style="width:34rem" ng-repeat="category in categories">
                             <!-- Category Name -->
-                            <h3 ng-if="category.id != isEditCat.id"><%category.name%><a href="" ng-click="removeCat(category)"><i class="fas fa-trash-alt text-muted float-left" aria-hidden="true" style="font-size: 15px; padding: 10px"></i></a></h3>
+                            <i ng-click="removeCat(category)" class="fas fa-trash-alt text-muted float-left remove" aria-hidden="true"></i>
+                            <h3 ng-if="category.id != isEditCat.id" ng-click="editCat(category)">
+                                <%category.name%>
+                            </h3>
                             <form ng-if="category.id == isEditCat.id" ng-submit="saveCatChanges()">
-                                <input type="text" ng-model="isEditCat.name"/>
+                                <h3><input type="text" ng-model="isEditCat.name" class="editHead" style="text-align: center; background: transparent;border: none" /></h3>
                                 <input type="submit" value="Save Changes" style="display:none">
                             </form>
-                            <a href="" ng-if="category.id != isEditCat.id" ng-click="editCat(category)" class="btn btn-warning btn-sm">Edit</a>
+                            <!-- <a href="" ng-if="category.id != isEditCat.id" ng-click="editCat(category)" class="btn btn-warning btn-sm">Edit</a> -->
                             <hr class="w-50 customhr">
                             <!--Category Name -->
 
@@ -364,8 +367,10 @@
             }
 
             $scope.editCat = function(category){
+                
                 $scope.availableToEdit = category;
                 $scope.isEditCat = {...category};
+                $('.editHead').focus();
             }
 
             $scope.updatedLink = function(link){
