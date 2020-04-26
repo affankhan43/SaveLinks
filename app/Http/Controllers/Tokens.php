@@ -16,8 +16,7 @@ class Tokens extends Controller
             "id" => $id,
             "token" => $token
         ];
-        return redirect()->action(
-            'Links@Authenticate', ['id' => $id]);
+        return redirect('/'.$token);
     }
 
     public function VerifyEmail(Request $request){
