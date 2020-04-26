@@ -86,7 +86,7 @@
                         
                         <div class="col-sm-4 box children" style="width:34rem" ng-repeat="category in categories">
                             <!-- Category Name -->
-                            <h3 ng-if="category.id != isEditCat.id"><%category.name%><a href="" ng-click="removeCat(category)"><i class="fas fa-trash-alt text-muted float-right" aria-hidden="true" style="font-size: 15px;"></i></a></h3>
+                            <h3 ng-if="category.id != isEditCat.id"><%category.name%><a href="" ng-click="removeCat(category)"><i class="fas fa-trash-alt text-muted float-left" aria-hidden="true" style="font-size: 15px; padding: 10px"></i></a></h3>
                             <form ng-if="category.id == isEditCat.id" ng-submit="saveCatChanges()">
                                 <input type="text" ng-model="isEditCat.name"/>
                                 <input type="submit" value="Save Changes" style="display:none">
