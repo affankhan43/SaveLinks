@@ -436,6 +436,9 @@
 
             $scope.saveLink = function(category){
                 let catId = category.id;
+                if (!$scope.link.url.startsWith("http://") && !$scope.link.url.startsWith("https://")){
+                    $scope.link.url = "http://"+$scope.link.url
+                }
                 $http({
                     method:"POST",
                     url:"{{URL::to('/api/saveLink')}}",
