@@ -86,13 +86,12 @@
                         
                         <div class="col-sm-4 box children" style="width:34rem" ng-repeat="category in categories">
                             <!-- Category Name -->
-                            <h3 ng-if="category.id != isEditCat.id"><%category.name%></h3>
+                            <h3 ng-if="category.id != isEditCat.id"><%category.name%><a href="" ng-click="removeCat(category)"><i class="fas fa-trash-alt text-muted float-right" aria-hidden="true" style="font-size: 15px;"></i></a></h3>
                             <form ng-if="category.id == isEditCat.id" ng-submit="saveCatChanges()">
                                 <input type="text" ng-model="isEditCat.name"/>
                                 <input type="submit" value="Save Changes" style="display:none">
                             </form>
                             <a href="" ng-if="category.id != isEditCat.id" ng-click="editCat(category)" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="" ng-click="removeCat(category)" class="btn btn-danger btn-sm">Remove</a>
                             <hr class="w-50 customhr">
                             <!--Category Name -->
 
