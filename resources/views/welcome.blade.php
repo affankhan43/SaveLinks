@@ -305,7 +305,7 @@
                         var urlEdit = '{{ route("main", ":id") }}';
                         urlEdit = urlEdit.replace(':id', $scope.token.token);
                         history.pushState('Welcome', 'Save Links', urlEdit);
-                        if($scope.token.email == null){
+                        if($scope.token.email == '' || $scope.token.email == null){
                             $scope.isEmailShow = true;
                         }else{
                             $scope.isEmailShow = false;
@@ -322,7 +322,7 @@
                     var urlEdit = '{{ route("main", ":id") }}';
                     urlEdit = urlEdit.replace(':id', $scope.token.token);
                     history.pushState('Welcome', 'Save Links', urlEdit);
-                    if($scope.token.email == null){
+                    if($scope.token.email == "" || $scope.token.email == null){
                         $scope.isEmailShow = true;
                     }else{
                         $scope.isEmailShow = false;
@@ -340,10 +340,10 @@
                         method:"GET"
                     }).then(response => {
                         $scope.links = response.data;
-                        console.log($scope.links);
+                        //console.log($scope.links);
                     });
                 }
-                console.log($scope.token);
+                //console.log($scope.token);
             }
 
             $scope.cancelAdd = function(){
