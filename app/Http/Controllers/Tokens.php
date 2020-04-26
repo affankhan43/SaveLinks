@@ -16,7 +16,7 @@ class Tokens extends Controller
             "id" => $id,
             "token" => $token
         ];
-        return $data;
+        return redirect()->route('main',['id'=>$token]);
     }
 
     public function VerifyEmail(Request $request){
