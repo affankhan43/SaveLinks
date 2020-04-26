@@ -302,6 +302,9 @@
                     }).then(response => {
                         localStorage.setItem("token",JSON.stringify(response.data));
                         $scope.token = JSON.parse(localStorage.getItem("token"));
+                        var urlEdit = '{{ route("main", ":id") }}';
+                        urlEdit = urlEdit.replace(':id', $scope.token.token);
+                        history.pushState('Welcome', 'Save Links', urlEdit);
                         if($scope.token.email == null){
                             $scope.isEmailShow = true;
                         }else{
@@ -316,6 +319,9 @@
                     })
                 }else{
                     $scope.token = JSON.parse(localStorage.getItem("token"));
+                    var urlEdit = '{{ route("main", ":id") }}';
+                    urlEdit = urlEdit.replace(':id', $scope.token.token);
+                    history.pushState('Welcome', 'Save Links', urlEdit);
                     if($scope.token.email == null){
                         $scope.isEmailShow = true;
                     }else{
