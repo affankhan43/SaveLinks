@@ -7669,6 +7669,9 @@ border-radius: 12px;
 }
 
 .add .removeicon{
+  top: -14%;
+  left: -3%;
+  transform: translate(-3px, 1%);
   visibility: hidden;
   position: absolute;
 }
@@ -7678,26 +7681,22 @@ border-radius: 12px;
 }
 
 .addlink {
-        padding: 3px;
-        border: 1px solid #756a4e;
-       border-radius: 9px;
+  padding: 3px;
+  border: 1px solid #756a4e;
+  border-radius: 9px;
 }
+
 .bg-go {
-
-    background: #756a4e;
+  background: #756a4e;
 }
-.add {
 
-
-}
 .addfields {
-background: none;
-border: 0px;
-
+  background: none;
+  border: 0px;
 }
-.addfields:focus {
-background: none;
 
+.addfields:focus {
+  background: none;
 }
 
 .remove {
@@ -7707,6 +7706,7 @@ background: none;
   position: absolute;
   left:0%;
 }
+
 .cats:hover .remove{
   display: initial !important;
 }
