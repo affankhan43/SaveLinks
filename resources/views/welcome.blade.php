@@ -73,7 +73,7 @@
                 <div class="wrapp mt-3">
                     <div class="row mt-3 float-right">
                         <div class="col-3"  style="position: absolute;right: 200px">
-                            <button class="btn btn-outline-dark roundedc" ng-show="!addCat" ng-click="showCat()">Add Column</button>
+                            <button class="btn btn-outline-dark roundedc" ng-show="!addCat" ng-click="showCat()">Create New Category</button>
                             <form  ng-submit="saveCategory()" ng-show="addCat" ng-cloak>
                                 <div class="card" style="width:70%;float:right;margin-bottom:30px">
                                     <input type="text" ng-model="catName" class="form-control" style="display:inline-block" placeholder="Enter Category Name"/>
@@ -118,7 +118,7 @@
                                 <div class="card-body">
                                     <p ng-click="executeUrl(l.url)"><%l.url%></p>
                                     <small class="text-muted"><%l.tags%></small>
-                                    <a href="" ng-click="removeLink(l)"><i class="fas fa-times text-muted float-left removeicon"></i></a>
+                                    <a href="" ng-click="removeLink(l)"><i class="fas fa-trash-alt float-left removeicon"></i></a>
                                     <i class="fas fa-external-link-alt text-muted float-right" ng-click="executeUrl(l.url)"></i>
                                 </div>
                             </div>
