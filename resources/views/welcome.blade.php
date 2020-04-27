@@ -99,7 +99,7 @@
                             <!--Category Name -->
 
                             <!--   Add link appears only when hover -->
-                            <a href="" ng-click="activateAddLink(category)" ng-show="!addLink">Add New Link</a>
+                            <a href="" ng-click="activateAddLink(category)" ng-show="!addLink" class="linkAdder">Add New Link</a>
                             <div class="card add my-3 bg-new" ng-if="showAddLink.name == category.name">
                                 <a href="" ng-click="cancelAdd()"><i class="fas fa-times text-muted float-left removeicon"></i></a>
                                 <div class="addlink">

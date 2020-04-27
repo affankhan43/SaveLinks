@@ -7709,3 +7709,10 @@ background: none;
 .cats:hover .remove{
   display: initial !important;
 }
+
+.linkAdder{
+  visibility: hidden;
+}
+.cats:hover .linkAdder{
+  visibility: visible;
+}
