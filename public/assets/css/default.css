@@ -7670,6 +7670,7 @@ border-radius: 12px;
 
 .add .removeicon{
   visibility: hidden;
+  position: absolute;
 }
 
 .add:hover .removeicon{
