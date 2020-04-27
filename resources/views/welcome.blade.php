@@ -86,7 +86,7 @@
                         
                         <div class="col-sm-4 box children cats" style="width:34rem" ng-repeat="category in categories">
                             <!-- Category Name -->
-                            <i ng-click="removeCat(category)" class="fas fa-trash-alt text-muted float-left remove" aria-hidden="true"></i>
+                            <i ng-click="removeCat(category)" class="fas fa-trash-alt float-left remove" aria-hidden="true"></i>
                             <h3 ng-if="category.id != isEditCat.id" ng-click="editCat(category)">
                                 <%category.name%>
                             </h3>
