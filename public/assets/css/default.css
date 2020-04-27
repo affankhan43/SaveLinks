@@ -7661,14 +7661,20 @@ border-radius: 12px;
 }
 
 
-   .cardlink .removeicon{
+.cardlink .removeicon{
   visibility:hidden;
 }
 .cardlink:hover .removeicon {
- visibility:visible;
+  visibility:visible;
 }
 
+.add .removeicon{
+  visibility: hidden;
+}
 
+.add:hover .removeicon{
+  visibility: visible;
+}
 
 .addlink {
         padding: 3px;
