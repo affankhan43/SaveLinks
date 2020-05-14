@@ -18,10 +18,7 @@ Options -Indexes
     </IfModule>
 
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www.savlinks.com [NC]
-    RewriteRule ^(.*)$ http://savelinks.com/$1 [L,R=301]
-
-
+    
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
@@ -35,4 +32,7 @@ Options -Indexes
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    RewriteCond %{HTTP_HOST} ^www.savlinks.com [NC]
+    RewriteRule ^(.*)$ http://savelinks.com/$1 [L,R=301]
 </IfModule>
