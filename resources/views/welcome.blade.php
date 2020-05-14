@@ -116,7 +116,7 @@
                             <!--  link card -->
                             <div class="card cardlink my-3" ng-repeat="l in links | filter:search" ng-if="l.cat_id == category.id">
                                 <div class="card-body">
-                                    <p ng-click="executeUrl(l.url)"><%l.url%></p>
+                                    <p ng-click="executeUrl(l.url)" class="url-flow"><%l.url%></p>
                                     <small class="text-muted"><%l.tags%></small>
                                     <a href="" ng-click="removeLink(l)"><i class="fas fa-trash-alt float-left removeicon"></i></a>
                                     <i class="fas fa-external-link-alt text-muted float-right" ng-click="executeUrl(l.url)"></i>

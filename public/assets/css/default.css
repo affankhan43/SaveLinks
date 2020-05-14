@@ -7717,3 +7717,9 @@ border-radius: 12px;
 .cats:hover .linkAdder{
   visibility: visible;
 }
+.url-flow{
+  white-space: nowrap; 
+  width: 100%; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
