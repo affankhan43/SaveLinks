@@ -18,6 +18,9 @@ Options -Indexes
     </IfModule>
 
     RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www.savlinks.com [NC]
+    RewriteRule ^(.*)$ http://savelinks.com/$1 [L,R=301]
+
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
